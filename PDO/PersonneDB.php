@@ -1,4 +1,6 @@
 <?php
+require_once "metier/Adresse.php";
+
 require_once "Constantes.php";
 require_once "metier/Personne.php";
 /**
@@ -147,7 +149,7 @@ class PersonneDB
 	//conversion de l'objet en objet personne
 	//conversion date naissance en datetime
 	$dt =new  DateTime($obj->datenaissance);
-	$pers=new Personne($obj->nom,$obj->prenom,$dt,$obj->telephone, $obj->email,$obj->login,$obj->pwd);
+	$pers=new Personne($obj->nom,$obj->prenom,$dt,$obj->telephone, $obj->email,$obj->login,$obj->pwdnew, new Adresse(4,"Rue d'Alsace",78000,'Sartrouville',4));
 	//affectation de l'id pers
 	$pers->setId($obj->id);
 	 	return $pers;	 
@@ -192,8 +194,20 @@ public function authentification($login,$pwd){
 	//on crytpe le pwd en md5 pour le comparer avec celui présent en bdd
 	$pwdcrypte=md5($pwd);
 	// TODO vérifier que le login et le pwd correspondent à ceux présent en bdd  
-	
+	$q2 = "SELECT * FROM personne WHERE login=:login";
+	$q = $this->db->prepare($q2);
+	$q->bindValue(':login',$login);
+	$q->execute();
+	$arrAll=$q->fetch(PDO::FETCH_ASSOC);
+	if (empty($arrAll)){
+		throw new Exception(Constantes::EXCEPTION_DB_PERSONNE);
+	}
+	$q->closeCursor();
+	$q=NULL;
+
 	//retour du resultat
+	if($arrAll["pwd"]===$pwdcrypte){
 	return $arrAll;
+	}
 }
 }

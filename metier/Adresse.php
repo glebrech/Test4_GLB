@@ -12,6 +12,7 @@ class Adresse {
 	private ?string $rue;
 	private ?int $codePostal;
 	private ?string $ville;
+    private int $persId;
 	
 	function __construct(int $id, int $numero,string $rue,int $codePostal,string $ville) {
             $this->id = $id;
@@ -41,6 +42,12 @@ class Adresse {
             return $this->ville;
         }
 
+
+        function getpersId()
+    {
+        return $this->persId;
+    }
+
         function setId($id) {
             $this->id = $id;
         }
@@ -60,6 +67,11 @@ class Adresse {
         function setVille($ville) {
             $this->ville = $ville;
         }
+
+        function setpersId($persId)
+    {
+        $this->persId = $persId;
+    }
 
 	/**
 	 *

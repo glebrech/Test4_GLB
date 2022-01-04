@@ -1,9 +1,9 @@
 -Vous devez :
--insérer le fichier auth.css dans le fichier headerAuth.html, dans le dossier vue check
--Ajouter l'attribut Adresse dans la classe metier personne.php
+-insérer le fichier auth.css dans le fichier headerAuth.html, dans le dossier vue CHECK
+-Ajouter l'attribut Adresse dans la classe metier personne.php			CHECK
 -implementer la classe AdresseDB.php
--implementer le fichier de tests AdresseDBTest.php pour toutes les méthodes de la classe AdresseDB.php
--implémenter la méthode authentification de PersonneDB.php
+-implementer le fichier de tests AdresseDBTest.php pour toutes les méthodes de la classe AdresseDB.php		CHECK
+-implémenter la méthode authentification de PersonneDB.php		CHECK
 -implémenter le test de la méthode authentification dans le fichier PersonneDBTest.php
 -implementer le front de l'item MonCompte: 
 	-controller moncompteController.php
