@@ -27,6 +27,7 @@ class PersonneDBTest extends TestCase {
 * @coversNothing
 */ 
 
+
     protected function setUp():void {
         //parametre de connexion à la bae de donnée
      $strConnection = Constantes::TYPE.':host='.Constantes::HOST.';dbname='.Constantes::BASE; 
@@ -237,4 +238,16 @@ $this->assertEquals($p->getPwd(),$pers->getPwd());
 
     }
 
+    public function authentification()
+    {
+        $this->personne = new PersonneDB($this->pdodb);
+        $dt = new DateTime("Dupont","Dylan",$dt,"0658963256","dylan@dupont.fr","DD", new Adresse(4 ,"Rue d'Alsace",78000,"Sartrouville",4));
+        $p->setPwd("monpwd");
+        $p->setId(7);
+        $this->personne->ajout($p);
+        $lastId = $this->pdodb->lastInsertId();
+        $p->setId($lastId);
+        $pers = $this->personne->selectionId($p->getId());
+        $this->assertEquals($pers->getPwd(),$p->getPwd());
+    }
 }
