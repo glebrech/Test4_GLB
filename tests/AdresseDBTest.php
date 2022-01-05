@@ -6,6 +6,7 @@ include_once "PDO/connectionPDO.php";
 require_once "metier/Adresse.php";
 require_once "PDO/AdresseDB.php";
 
+,
 class AdresseDBTest extends TestCase
 {
     @var AdresseDB
